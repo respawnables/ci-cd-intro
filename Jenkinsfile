@@ -4,7 +4,7 @@ node {
   }
 
   stage("Test") {
-    sh "./gradlew clean verify"
+    sh "./gradlew clean test"
   }
 
   stage("Gradle Build") {
