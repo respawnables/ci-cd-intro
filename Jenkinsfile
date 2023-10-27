@@ -7,7 +7,7 @@ node {
     sh "./gradlew clean test"
   }
 
-  stage("Gradle Build") {
-    sh "./gradlew build"
+  stage("Build Native Image") {
+    sh "./gradlew clean bootBuildImage"
   }
 }
