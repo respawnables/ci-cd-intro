@@ -3,7 +3,11 @@ node {
     git branch: 'main', url: 'https://github.com/respawnables/ci-cd-intro'
   }
 
-  stage("Build project with test execution") {
+  stage("Test") {
+    sh "./gradlew clean verify"
+  }
+
+  stage("Gradle Build") {
     sh "./gradlew build"
   }
 }
