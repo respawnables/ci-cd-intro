@@ -1,5 +1,11 @@
 node {
-  stage("Clone project") {
+
+  stage('Initialize'){
+    def dockerHome = tool 'myDocker'
+    env.PATH = "${dockerHome}/bin:${env.PATH}"
+  }
+
+  stage("Clone Project") {
     git branch: 'main', url: 'https://github.com/respawnables/ci-cd-intro'
   }
 
