@@ -9,11 +9,9 @@ node {
   }
 
   stage("Build Native Image") {
-    step {
+    steps {
         def dockerHome = tool 'myDocker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
-    }
-    step {
         sh "./gradlew clean bootBuildImage"
     }
   }
