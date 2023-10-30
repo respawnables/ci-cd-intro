@@ -8,12 +8,13 @@ node {
     sh "./gradlew clean test"
   }
 
-  stage('Initialize Docker'){
-    def dockerHome = tool 'myDocker'
-    env.PATH = "${dockerHome}/bin:${env.PATH}"
-  }
-
   stage("Build Native Image") {
-    sh "./gradlew clean bootBuildImage"
+    step {
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
+    step {
+        sh "./gradlew clean bootBuildImage"
+    }
   }
 }
