@@ -9,7 +9,7 @@ group = 'com.clouify'
 version = '0.0.1'
 
 java {
-    sourceCompatibility = '21'
+    sourceCompatibility = '17'
 }
 
 repositories {
@@ -27,7 +27,8 @@ tasks.named('test') {
 }
 
 tasks.named("bootBuildImage") {
-    builder = "dashaun/builder:tiny"
+    builder = "paketobuildpacks/builder:tiny" // AMD64
+    //builder = "dashaun/builder-arm:tiny" // ARM64
     environment = ["BP_NATIVE_IMAGE" : "true"]
-    imageName = 'ci-cd-intro:0.0.1'
+    imageName = 'ci-cd-intro:latest'
 }
