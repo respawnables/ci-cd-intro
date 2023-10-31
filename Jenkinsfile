@@ -40,7 +40,10 @@ def dockerBuild(){
 }
 
 def dockerLogin(){
-    sh "docker login --username=respawnables --password=dckr_pat_d2SHQlpQd1kNO4Iln6VneelvMaA"
+    withCredentials([usernamePassword(credentialsId: 'docker-push', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+        sh "docker login --username=${USERNAME} --password=${PASSWORD}"
+    }
+
 }
 
 def dockerPush(){
