@@ -30,5 +30,5 @@ tasks.named("bootBuildImage") {
     builder = "paketobuildpacks/builder:tiny" // AMD64
     //builder = "dashaun/builder-arm:tiny" // ARM64
     environment = ["BP_NATIVE_IMAGE" : "true"]
-    imageName = 'ci-cd-intro:latest'
+    imageName = 'respawnables/ci-cd-intro:latest'
 }
