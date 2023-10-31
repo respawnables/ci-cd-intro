@@ -1,16 +1,33 @@
 node {
 
-    stage("Clone Project") {
-        git branch: 'main', url: 'https://github.com/respawnables/ci-cd-intro'
+    env.JAVA_HOME="${tool 'JDK 21'}"
+    env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+
+    sh 'java -version'
+
+    stage("Checkout") {
+        scmCheckout()
     }
 
-    stage("Test") {
-        sh "./gradlew clean test"
+    stage("Build") {
+        gradleBuild()
     }
 
-    stage("Build Native Image") {
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-        sh "./gradlew clean bootBuildImage"
+    stage("Native Image Build") {
+        dockerBuild()
     }
+}
+
+def scmCheckout(){
+    deleteDir()
+    checkout scm
+    //git branch: 'main', url: 'https://github.com/respawnables/ci-cd-intro'
+}
+
+def gradleBuild(){
+    sh "./gradlew clean test"
+}
+
+def dockerBuild(){
+    sh "./gradlew clean bootBuildImage"
 }
