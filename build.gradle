@@ -27,7 +27,7 @@ tasks.named('test') {
 }
 
 tasks.named("bootBuildImage") {
-    builder = "dashaun/builder:tiny"
+    builder = "paketobuildpacks/builder:tiny"
     environment = ["BP_NATIVE_IMAGE" : "true"]
-    imageName = 'ci-cd-intro:0.0.1'
+    imageName = 'ci-cd-intro:latest'
 }

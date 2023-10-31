@@ -21,7 +21,6 @@ node {
 def scmCheckout(){
     deleteDir()
     checkout scm
-    //git branch: 'main', url: 'https://github.com/respawnables/ci-cd-intro'
 }
 
 def gradleBuild(){
